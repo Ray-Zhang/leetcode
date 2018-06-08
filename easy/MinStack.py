@@ -35,7 +35,6 @@ class MinStack(object):
             self.stack.pop()
             self.top_idx -= 1
             self.heap_idx.pop()
-            return
         else:
             self.heap_idx[pop_heap_idx] = self.heap_idx[self.top_idx]
             self.stack.pop()
@@ -68,7 +67,7 @@ class MinStack(object):
                 idx_min = self._left(i)
             if self._right(i) <= self.top_idx and self.stack[self.heap_idx[self._right(i)]] < self.stack[self.heap_idx[idx_min]]:
                 idx_min = self._right(i)
-            self.stack[self.heap_idx[i]], self.stack[self.heap_idx[idx_min]] = self.stack[self.heap_idx[idx_min]], self.stack[self.heap_idx[i]]
+            self.heap_idx[i], self.heap_idx[idx_min] = self.heap_idx[idx_min], self.heap_idx[i]
             if (i == idx_min):
                 break
             i = idx_min
@@ -92,18 +91,31 @@ class MinStack(object):
 
 if __name__ == '__main__':
     minStack = MinStack()
-    minStack.push(-2)
-    minStack.push(0)
-    minStack.push(-3)
-    print(minStack.top())
-    print(minStack.getMin())
+    minStack.push(395)
+    print(minStack.stack)
+    print(minStack.heap_idx)
+    print(minStack.top_idx)
+    minStack.push(276)
+    print(minStack.stack)
+    print(minStack.heap_idx)
+    print(minStack.top_idx)
+    minStack.push(29)
+    print(minStack.stack)
+    print(minStack.heap_idx)
+    print(minStack.top_idx)
+    minStack.push(-482)
+    print(minStack.stack)
+    print(minStack.heap_idx)
+    print(minStack.top_idx)
     minStack.pop()
-    print(minStack.top())
-    print(minStack.getMin())
-    minStack.pop()
-    print(minStack.top())
-    print(minStack.getMin())
-    minStack.push(0)
-    print(minStack.top())
-    print(minStack.getMin())
-
+    print(minStack.stack)
+    print(minStack.heap_idx)
+    print(minStack.top_idx)
+    minStack.push(-108)
+    print(minStack.stack)
+    print(minStack.heap_idx)
+    print(minStack.top_idx)
+    minStack.push(-251)
+    print(minStack.stack)
+    print(minStack.heap_idx)
+    print(minStack.top_idx)
